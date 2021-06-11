@@ -22,8 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "eslint": "eslint --ext .tsx --ext .ts src/",
-    "eslint:fix": "npm run eslint -- --fix",
-    "pre-commit": "lint-staged"
+    "eslint:fix": "npm run eslint -- --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -37,7 +36,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": "eslint"
+    "src/**/*.{ts,tsx}": "npm run prettier:check"
   },
   "browserslist": {
     "production": [
