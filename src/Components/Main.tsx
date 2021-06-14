@@ -12,13 +12,9 @@ const useStyles = makeStyles((theme) =>
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: theme.spacing(12),
-      paddingBottom: theme.spacing(1),
+      paddingTop: theme.spacing(10),
+      paddingBottom: theme.spacing(52),
       paddingLeft: theme.spacing(30),
-    },
-    circularProgress: {
-      color: theme.palette.primary.dark,
-      textAlign: 'center',
     },
   })
 )

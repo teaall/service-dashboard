@@ -14,6 +14,8 @@ import AddBoxIcon from '@material-ui/icons/AddBox'
 import { useHistory } from 'react-router-dom'
 import { MenuInfomation } from '../model/model'
 import { Settings } from '@material-ui/icons'
+import { categories } from '../util/constants'
+import { HashLink } from 'react-router-hash-link'
 
 const drawerWidth = 240
 
@@ -85,6 +87,19 @@ const Nav = () => {
                 </Typography>
               </ListItemText>
             </ListItem>
+            {categories.map((category) => (
+              <ListItem
+                className={classes.nested}
+                button
+                smooth
+                component={HashLink}
+                to={['/#', category.title].join('')}>
+                <ListItemText>
+                  <Typography>{category.title}</Typography>
+                </ListItemText>
+              </ListItem>
+            ))}
+
             <Divider />
 
             {menuItems.map(({ path, title, icon }) => (

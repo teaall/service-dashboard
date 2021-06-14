@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Home from '../Pages/Home/Home'
+import Home from '../Pages/Home'
 
 const Routes: FC = () => {
   return (
