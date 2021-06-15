@@ -1,7 +1,10 @@
-import { Container, createStyles, fade, InputBase, makeStyles, Theme } from '@material-ui/core'
+import { Container, createStyles, fade, Grid, InputBase, Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
 import SearchIcon from '@material-ui/icons/Search'
+import { services } from '../../util/constants'
+import { Service } from '../../model/model'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,6 +43,22 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '20ch',
       },
     },
+    logo: {
+      height: 50,
+    },
+    autoComplete: {
+      display: 'flex',
+      width: '100%',
+    },
+    container: {
+      height: '50',
+      alignItems: 'center',
+      wrap: 'nowrap',
+    },
+    searchGridItem: {
+      justifyContent: 'center',
+      paddingLeft: theme.spacing(2),
+    },
   })
 )
 
@@ -50,13 +69,47 @@ const Search = () => {
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
-      <InputBase
-        placeholder="Search…"
+      <Autocomplete
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
-        inputProps={{ 'aria-label': 'search' }}
+        className={classes.autoComplete}
+        id="free-solo-demo"
+        freeSolo
+        options={services as Service[]}
+        getOptionLabel={(option) => option.title}
+        renderOption={(option) => (
+          <Grid
+            container
+            className={classes.container}
+            direction={'row'}
+            component={Link}
+            href={option.path}
+            target="_blank"
+            underline="none"
+            color="inherit">
+            <Grid item xs={2} className={classes.searchGridItem}>
+              <img src={option.image} className={classes.logo} alt="Logo" />
+            </Grid>
+            <Grid item xs={8}>
+              <Typography variant="body1">{option.title}</Typography>
+            </Grid>
+          </Grid>
+        )}
+        renderInput={(params) => {
+          const { InputLabelProps, InputProps, ...rest } = params
+          return (
+            <InputBase
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              {...params.InputProps}
+              {...rest}
+            />
+          )
+        }}
       />
     </Container>
   )
